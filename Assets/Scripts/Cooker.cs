@@ -66,7 +66,7 @@ public class Cooker : MonoBehaviour
         {
             isLollipop = true;
             GameObject lollipopInstance = Instantiate(Lollipop, transform.position + Vector3.up*3, transform.rotation);
-            lollipopInstance.tag = Lollipop.name;
+            lollipopInstance.tag = "Lollipop";
             isLollipop = false;
             isSyrup=false;
             isCornsyrup=false;
@@ -76,7 +76,7 @@ public class Cooker : MonoBehaviour
         {
             isGummy = true;
             GameObject gummyInstance = Instantiate(Gummy, transform.position + Vector3.up*3, transform.rotation);
-            gummyInstance.tag = Gummy.name;
+            gummyInstance.tag = "Gummy";
             isGummy = false;
             isSyrup = false;
             isGelatin = false;
