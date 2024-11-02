@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,12 +12,17 @@ public class PickUpItemRaycast : MonoBehaviour
     public float offsetDistance = 0.5f; // Nesnenin oyuncu elinin önünde duracaðý mesafe
     public Vector3 offsetRotation = new Vector3(0, 45, 0);
     private GameObject heldItem = null; // Oyuncunun elindeki nesneyi takip etmek için
-
+    public Crafter crafter;
+    public GameObject SugarKaramel;
+ 
     void Start()
     {
         pickUpText.SetActive(false);
     }
-  
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(other.gameObject);
+    }
     void Update()
     {
         // Eðer oyuncunun elinde bir nesne yoksa ray ile etkileþimi kontrol et
@@ -28,7 +34,7 @@ public class PickUpItemRaycast : MonoBehaviour
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, pickUpDistance))
             {
                 // Ray bir "Item" ile temas ediyor mu kontrol et
-                if (hit.collider.CompareTag("Item"))
+                if (hit.collider.CompareTag("Karamel") || hit.collider.CompareTag("Water") || hit.collider.CompareTag("Sugar"))
                 {
                     pickUpText.SetActive(true); // Yazýyý göster
 
@@ -62,6 +68,32 @@ public class PickUpItemRaycast : MonoBehaviour
                 heldItem.transform.SetParent(null); // Nesnenin ebeveynini kaldýr
                 heldItem = null; // Elindeki nesneyi boþalt
             }
+        } 
+    
+        if (crafter.isReady == true)
+        {
+            RaycastHit hit0;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit0, pickUpDistance))
+            {
+                if (hit0.collider.CompareTag("Crafter"))
+                {
+                   if(Input.GetKeyDown(KeyCode.E)){
+                        Instantiate(SugarKaramel);
+                        crafter.isKaramel = false;
+                        crafter.isCornsyrup = false;
+                        crafter.isSugar = false;
+                        crafter.isWater = false;
+                        crafter.isChocolatte = false;
+                        crafter.isGelatin = false;
+                        crafter.isReady = false;
+                    }
+                    
+                }
+            }
         }
+        
+
+
+
     }
 }

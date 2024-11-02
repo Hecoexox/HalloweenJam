@@ -7,6 +7,15 @@ TagManager:
   - CinemachineTarget
   - Object
   - Item
+  - Ocak
+  - Karamel
+  - Sugar
+  - Water
+  - Crafter
+  - Cornsyrup
+  - Gelatin
+  - Chocolatte
+  - Junk
   layers:
   - Default
   - TransparentFX
