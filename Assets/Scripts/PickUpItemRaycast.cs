@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -14,7 +15,10 @@ public class PickUpItemRaycast : MonoBehaviour
     private GameObject heldItem = null; // Oyuncunun elindeki nesneyi takip etmek için
     public Crafter crafter;
     public GameObject SugarKaramel;
- 
+    public GameObject SugarLolipop;
+    public GameObject SugarChocolatte;
+    public GameObject SugarJelibon;
+    string[] validTags = { "MeltedKaramel", "MeltedChocolatte", "Water", "Sugar", "Syrup", "Karamel", "Chocolatte", "Cornsyrup", "Gelatin", "Junk", "Lollipop", "Gummy", "Karamel Candy", "Chocolatte Candy" };
     void Start()
     {
         pickUpText.SetActive(false);
@@ -34,14 +38,15 @@ public class PickUpItemRaycast : MonoBehaviour
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, pickUpDistance))
             {
                 // Ray bir "Item" ile temas ediyor mu kontrol et
-                if (hit.collider.CompareTag("Karamel") || hit.collider.CompareTag("Water") || hit.collider.CompareTag("Sugar"))
+                if (validTags.Contains(hit.collider.tag))
                 {
                     pickUpText.SetActive(true); // Yazýyý göster
 
                     // E tuþuna basýldýðýnda itemi al
-                    if (Input.GetKeyDown(KeyCode.E))
+                    if (Input.GetMouseButton(0))
                     {
                         heldItem = hit.collider.gameObject; // Oyuncunun elindeki nesneyi ayarla
+                        heldItem.GetComponent<Collider>().enabled = false;
                         heldItem.transform.SetParent(null); // Nesneyi baðýmsýz hale getir
                         pickUpText.SetActive(false); // Yazýyý gizle
                     }
@@ -58,6 +63,8 @@ public class PickUpItemRaycast : MonoBehaviour
         }
         else
         {
+
+
             // Nesnenin oyuncunun elinin önünde durmasý için konum ve rotasyon ayarý
             heldItem.transform.position = playerHand.position + playerHand.forward * offsetDistance;
             heldItem.transform.rotation = playerHand.rotation * Quaternion.Euler(offsetRotation); ;
@@ -65,12 +72,14 @@ public class PickUpItemRaycast : MonoBehaviour
             // E tuþuna basýldýðýnda nesneyi býrak
             if (Input.GetKeyDown(KeyCode.E))
             {
+                heldItem.GetComponent<Collider>().enabled = true;
                 heldItem.transform.SetParent(null); // Nesnenin ebeveynini kaldýr
                 heldItem = null; // Elindeki nesneyi boþalt
+                
             }
         } 
-    
-        if (crafter.isReady == true)
+   /* //CRAFTER
+        if (crafter.isReadyLolipop == true)
         {
             RaycastHit hit0;
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit0, pickUpDistance))
@@ -78,7 +87,7 @@ public class PickUpItemRaycast : MonoBehaviour
                 if (hit0.collider.CompareTag("Crafter"))
                 {
                    if(Input.GetKeyDown(KeyCode.E)){
-                        Instantiate(SugarKaramel);
+                        Instantiate(SugarLolipop);
                         crafter.isKaramel = false;
                         crafter.isCornsyrup = false;
                         crafter.isSugar = false;
@@ -91,7 +100,73 @@ public class PickUpItemRaycast : MonoBehaviour
                 }
             }
         }
-        
+        else if (crafter.isReadyJelibon == true)
+        {
+            RaycastHit hit0;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit0, pickUpDistance))
+            {
+                if (hit0.collider.CompareTag("Crafter"))
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        Instantiate(SugarJelibon);
+                        crafter.isKaramel = false;
+                        crafter.isCornsyrup = false;
+                        crafter.isSugar = false;
+                        crafter.isWater = false;
+                        crafter.isChocolatte = false;
+                        crafter.isGelatin = false;
+                        crafter.isReady = false;
+                    }
+
+                }
+            }
+        }
+        else if (crafter.isReadyKaramel == true)
+        {
+            RaycastHit hit0;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit0, pickUpDistance))
+            {
+                if (hit0.collider.CompareTag("Crafter"))
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        Instantiate(SugarKaramel);
+                        crafter.isKaramel = false;
+                        crafter.isCornsyrup = false;
+                        crafter.isSugar = false;
+                        crafter.isWater = false;
+                        crafter.isChocolatte = false;
+                        crafter.isGelatin = false;
+                        crafter.isReady = false;
+                    }
+
+                }
+            }
+        }
+        else if (crafter.isReadyChocolatte== true)
+        {
+            RaycastHit hit0;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit0, pickUpDistance))
+            {
+                if (hit0.collider.CompareTag("Crafter"))
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        Instantiate(SugarChocolatte);
+                        crafter.isKaramel = false;
+                        crafter.isCornsyrup = false;
+                        crafter.isSugar = false;
+                        crafter.isWater = false;
+                        crafter.isChocolatte = false;
+                        crafter.isGelatin = false;
+                        crafter.isReady = false;
+                    }
+
+                }
+            }
+        }*/
+
 
 
 

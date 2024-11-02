@@ -4,21 +4,30 @@ using UnityEngine;
 
 public class Crafter : MonoBehaviour
 {
-    public bool isKaramel = false;
+    
     public bool isWater = false;
     public bool isSugar = false;
-    public bool isChocolatte= false;
-    public bool isGelatin = false;
-    public bool isCornsyrup = false;
+    public bool isMeltedKaramel = false;
+    public bool isMeltedChocolatte = false;
+
     public bool isReady = false;
-    public GameObject objectsugar01;
+    public bool isJunk = false;
+
+    public bool isSyrup = false;
+    public bool isCaramel = false;
+    public bool isChocolatte = false;
+
+    public GameObject Syrup;
+    public GameObject Caramel;
+    public GameObject Chocolatte;
+ 
     public PickUpItemRaycast pickUpItemRaycast;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Karamel"))
+        if (other.CompareTag("MeltedKaramel"))
         {
-            isKaramel = true;
+            isMeltedKaramel = true;
             Destroy(other.gameObject);
         }
         else if (other.CompareTag("Water"))
@@ -31,30 +40,43 @@ public class Crafter : MonoBehaviour
             isSugar = true;
             Destroy(other.gameObject);
         }
-        else if (other.CompareTag("Chocolatte"))
+        else if (other.CompareTag("MeltedChocolatte"))
         {
-            isChocolatte = false;
+            isMeltedChocolatte = true;
             Destroy(other.gameObject);
         }
-        else if (other.CompareTag("Gelatin"))
+        else if (other.CompareTag("Syrup"))
         {
-            isGelatin = false;
+            isSyrup=true;
             Destroy(other.gameObject);
         }
-        else if (other.CompareTag("Cornsyrup"))
-        {
-            isCornsyrup = false;
-            Destroy(other.gameObject);
-        }
+        
     }
-
 
     void Update()
     {
-        //Karamelli
-        if(isWater && isSugar && isKaramel ) 
+      //Þerbet
+        if(isWater && isSugar) 
         {
-            isReady = true;
+            isSyrup = true;
+            GameObject SyrupInstance = Instantiate(Syrup, transform.position + Vector3.up * 3, transform.rotation);
+            SyrupInstance.tag = Syrup.name;
+            isSyrup = false;
+        }
+       //Karamel Özü
+       if(isMeltedKaramel && isSyrup) 
+        {
+            isCaramel=true;
+            GameObject CaramelInstance = Instantiate(Caramel);
+            CaramelInstance.tag = Caramel.name;
+            isCaramel = false;
+        }
+       //Çikolata Özü
+       if (isMeltedChocolatte && isSyrup)
+        {
+            isChocolatte=true;
+            Instantiate(Chocolatte);
+            isChocolatte = false;
         }
     }
 }

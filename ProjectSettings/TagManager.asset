@@ -5,17 +5,24 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
-  - Object
-  - Item
-  - Ocak
-  - Karamel
   - Sugar
   - Water
   - Crafter
+  - MeltedKaramel
+  - MeltedChocolatte
+  - Syrup
+  - Karamel
+  - Chocolatte
   - Cornsyrup
   - Gelatin
-  - Chocolatte
   - Junk
+  - Lollipop
+  - Gummy
+  - KaramelCandy
+  - ChocolatteCandy
+  - Cooker
+  - LollipopCandy
+  - GummyCandy
   layers:
   - Default
   - TransparentFX

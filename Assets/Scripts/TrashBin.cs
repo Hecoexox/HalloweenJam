@@ -7,7 +7,7 @@ public class TrashBin : MonoBehaviour
  
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Sugar")||other.CompareTag("Water") || other.CompareTag("Karamel") || other.CompareTag("CornSyrup") || other.CompareTag("Chocolate") || other.CompareTag("Gelatin") || other.CompareTag("Junk"))
+        if (other.CompareTag("Sugar")||other.CompareTag("Water") || other.CompareTag("Karamel") || other.CompareTag("Cornsyrup") || other.CompareTag("Chocolatte") || other.CompareTag("Gelatin") || other.CompareTag("Junk"))
         {
             Destroy(other.gameObject);
         }
