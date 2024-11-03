@@ -23,6 +23,9 @@ TagManager:
   - Cooker
   - LollipopCandy
   - GummyCandy
+  - Door
+  - Buttonsikis
+  - Decorative
   layers:
   - Default
   - TransparentFX

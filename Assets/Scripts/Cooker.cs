@@ -65,8 +65,8 @@ public class Cooker : MonoBehaviour
         if (isSyrup && isCornsyrup)
         {
             isLollipop = true;
-            GameObject lollipopInstance = Instantiate(Lollipop, transform.position + Vector3.up*3, transform.rotation);
-            lollipopInstance.tag = "Lollipop";
+            GameObject lollipopInstance = Instantiate(Lollipop, transform.position + Vector3.up*3 + Vector3.right*5/4, transform.rotation);
+            lollipopInstance.tag = "LollipopCandy";
             isLollipop = false;
             isSyrup=false;
             isCornsyrup=false;

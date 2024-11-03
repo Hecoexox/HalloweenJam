@@ -60,23 +60,30 @@ public class Crafter : MonoBehaviour
         {
             isSyrup = true;
             GameObject SyrupInstance = Instantiate(Syrup, transform.position + Vector3.up * 3, transform.rotation);
-            SyrupInstance.tag = Syrup.name;
+            SyrupInstance.tag = "Syrup";
             isSyrup = false;
+            isWater = false;
+            isSugar=false;
         }
        //Karamel Özü
        if(isMeltedKaramel && isSyrup) 
         {
             isCaramel=true;
-            GameObject CaramelInstance = Instantiate(Caramel);
-            CaramelInstance.tag = Caramel.name;
+            GameObject CaramelInstance = Instantiate(Caramel, transform.position + Vector3.up * 3, transform.rotation);
+            CaramelInstance.tag = "Karamel";
             isCaramel = false;
+            isMeltedKaramel = false;
+            isSyrup =false;
         }
        //Çikolata Özü
        if (isMeltedChocolatte && isSyrup)
         {
             isChocolatte=true;
-            Instantiate(Chocolatte);
+            GameObject ChocolatteInstance = Instantiate(Chocolatte, transform.position + Vector3.up * 3, transform.rotation);
+            ChocolatteInstance.tag = "Chocolatte";
             isChocolatte = false;
+            isMeltedChocolatte=false;
+            isSyrup=false;
         }
     }
 }

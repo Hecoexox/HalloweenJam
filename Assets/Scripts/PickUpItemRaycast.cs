@@ -18,7 +18,7 @@ public class PickUpItemRaycast : MonoBehaviour
     public GameObject SugarLolipop;
     public GameObject SugarChocolatte;
     public GameObject SugarJelibon;
-    string[] validTags = { "MeltedKaramel", "MeltedChocolatte", "Water", "Sugar", "Syrup", "Karamel", "Chocolatte", "Cornsyrup", "Gelatin", "Junk", "Lollipop", "Gummy", "Karamel Candy", "Chocolatte Candy" };
+    string[] validTags = { "MeltedKaramel", "MeltedChocolatte", "Water", "Sugar", "Syrup","Decorative", "Karamel", "Chocolatte", "Cornsyrup", "Gelatin", "Junk", "Lollipop", "Gummy", "Karamel Candy", "Chocolatte Candy", "LollipopCandy", "GummyCandy", };
     void Start()
     {
         pickUpText.SetActive(false);
